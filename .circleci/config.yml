@@ -17,7 +17,11 @@ jobs: # a collection of steps
       - persist_to_workspace:
           root: ~/repo
           paths:
-            - .
+            - Dockerfile
+            - dexels-felix-war/
+            - dexels-felix-bridge/
+            - dexels-felix-super/
+
   package_dexels_war_container:
     machine:
       image: circleci/classic:edge
