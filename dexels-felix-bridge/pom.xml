@@ -10,7 +10,7 @@
         <groupId>com.dexels</groupId>
         <artifactId>com.dexels.embedded.assembly</artifactId>
         <version>3.0.0-SNAPSHOT</version>
-        <relativePath>../</relativePath>
+        <relativePath>../dexels-felix-super</relativePath>
     </parent>
     <build>
         <plugins>
