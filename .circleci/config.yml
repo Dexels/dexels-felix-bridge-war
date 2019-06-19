@@ -69,13 +69,21 @@ jobs: # a collection of steps
           rm -rf enterprise
           echo "Cleaned up folder"
           find target/bundle -name *swift* | xargs rm
+          echo "Removed swift"
           find target/bundle -name *gogo* | xargs rm
+          echo "Removed gogo"
           find target/bundle -name .tar.gz | xargs rm
+          echo "Removed tar.gz"
           find target/bundle -name *jetty* | xargs rm
+          echo "Removed jetty"
           find target/bundle -name *pax.web* | xargs rm
+          echo "Removed pax web"
           find target/bundle -name *websocket* | xargs rm
+          echo "Removed websocket"
           find target/bundle -name *jgit* | xargs rm
+          echo "Removed jgit"
           find target/bundle -name *repository.git* | xargs rm
+          echo "Removed repository.git"
           cp target/bundle/* war/WEB-INF/bundles/
           echo "Removed unwanted bundles"
           cd war
