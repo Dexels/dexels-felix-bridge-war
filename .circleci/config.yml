@@ -18,13 +18,14 @@ jobs: # a collection of steps
           root: ~/repo
           paths:
             - .
-  package_dexels_war:
+  package_dexels_war_container:
     machine:
       image: circleci/classic:edge
     steps:
       - attach_workspace:
           at: ~/repo
       - run: |
+          ls -l
           docker --version
           docker login -u $DOCKER_USER -p $DOCKER_PASS
       - run: |
@@ -80,7 +81,7 @@ workflows:
   workflow:
     jobs:
       - build
-      - package_dexels_war:
+      - package_dexels_war_container:
           requires:
             - build
       - package_navajo_war:
