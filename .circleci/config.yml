@@ -11,4 +11,28 @@ jobs: # a collection of steps
       - run: mvn deploy -s .circleci/conf/settings.xml -T 1.5C deploy
       - store_artifacts: # store the uberjar as an artifact
           path: dexels-felix-war/target/com.dexels.embedded.war-3.0.0.war
+          destination: dexels-felix.war
+      - persist_to_workspace:
+          root: ~/repo
+          paths:
+            - .
+  package_navajo:
+    machine:
+      image: circleci/classic:edge
+    steps:
+      - attach_workspace:
+          at: ~/repo
+      - run: |
+          docker --version
+          docker login -u $DOCKER_USER -p $DOCKER_PASS
+      - run: |
+          TAG=${MINORTAG}.$CIRCLE_BUILD_NUM
+          docker build --build-arg TAG=${MINORTAG}.${BASE_VERSION} -t dexels/dexels-war:$TAG -t dexels/dexels-war:latest .
+          docker push dexels/dexels-war:$TAG
+          docker push dexels/dexels-war:latest
 
+workflows:
+  version: 2
+  workflow:
+    jobs:
+      - build
