@@ -61,12 +61,13 @@ jobs: # a collection of steps
           cd ..
           cd war
           unzip dexels-felix.war
-          rm dexels-felix.war
           cd ..
+          echo "Collecting bundles"
           mv navajo/plugins/*.jar target/bundle/
           mv enterprise/plugins/*.jar target/bundle/
           rm -rf navajo
           rm -rf enterprise
+          echo "Cleaned up folder"
           find target/bundle -name *swift* | xargs rm
           find target/bundle -name *gogo* | xargs rm
           find target/bundle -name .tar.gz | xargs rm
@@ -76,6 +77,7 @@ jobs: # a collection of steps
           find target/bundle -name *jgit* | xargs rm
           find target/bundle -name *repository.git* | xargs rm
           cp target/bundle/* war/WEB-INF/bundles/
+          echo "Removed unwanted bundles"
           cd war
           zip -r navajo-felix.war META-INF/* WEB-INF/*
           rm -rf WEB-INF META-INF
