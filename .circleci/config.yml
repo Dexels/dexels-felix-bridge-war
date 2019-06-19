@@ -76,7 +76,7 @@ jobs: # a collection of steps
           echo "Removed tar.gz"
           find target/bundle -name *jetty* | xargs rm
           echo "Removed jetty"
-          find target/bundle -name *pax.web* | xargs rm
+          find target/bundle -name *pax-web* | xargs rm
           echo "Removed pax web"
           find target/bundle -name *websocket* | xargs rm
           echo "Removed websocket"
