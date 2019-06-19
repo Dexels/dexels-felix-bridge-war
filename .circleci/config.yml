@@ -25,7 +25,7 @@ jobs: # a collection of steps
       - attach_workspace:
           at: ~/repo
       - run: |
-          ls -l
+          ls -lR
           docker --version
           docker login -u $DOCKER_USER -p $DOCKER_PASS
       - run: |
