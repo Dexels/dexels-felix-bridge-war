@@ -6,7 +6,7 @@
     <name>Felix Embedded War</name>
     <groupId>com.dexels</groupId>
     <artifactId>com.dexels.embedded.war</artifactId>
-    <version>3.0.0</version>
+    <version>3.0.1-SNAPSHOT</version>
     <packaging>war</packaging>
     <parent>
         <groupId>com.dexels</groupId>
