@@ -68,7 +68,9 @@ jobs: # a collection of steps
           rm -rf navajo
           rm -rf enterprise
           find target/bundle -name *swift* | xargs rm
-          find target/bundle -name *jetty* | grep jetty-server | xargs rm
+          find target/bundle -name *gogo* | xargs rm
+          find target/bundle -name .tar.gz | xargs rm
+          find target/bundle -name *jetty* | xargs rm
           find target/bundle -name *pax.web* | xargs rm
           find target/bundle -name *websocket* | xargs rm
           find target/bundle -name *jgit* | xargs rm
