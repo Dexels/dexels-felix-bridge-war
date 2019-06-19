@@ -72,7 +72,7 @@ jobs: # a collection of steps
           echo "Removed swift"
           find target/bundle -name *gogo* | xargs rm
           echo "Removed gogo"
-          find target/bundle -name .tar.gz | xargs rm
+          find target/bundle -name *.tar.gz | xargs rm
           echo "Removed tar.gz"
           find target/bundle -name *jetty* | xargs rm
           echo "Removed jetty"
