@@ -28,7 +28,7 @@
     <packaging>war</packaging>
     <parent>
         <groupId>com.dexels</groupId>
-        <artifactId>com.dexels.embedded.assembly</artifactId>
+        <artifactId>com.dexels.embedded.super</artifactId>
         <version>3.0.0-SNAPSHOT</version>
         <relativePath>../dexels-felix-super</relativePath>
     </parent>
@@ -88,7 +88,6 @@
                     </webResources>
                 </configuration>
             </plugin>
-
         </plugins>
     </build>
 
