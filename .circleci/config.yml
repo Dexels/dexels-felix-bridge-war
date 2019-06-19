@@ -80,7 +80,6 @@ jobs: # a collection of steps
           echo "Removed unwanted bundles"
           cd war
           zip -r navajo-felix.war META-INF/* WEB-INF/*
-          rm -rf WEB-INF META-INF
           cd ..
       - store_artifacts: # store the uberjar as an artifact
           path: war/navajo-felix.war
