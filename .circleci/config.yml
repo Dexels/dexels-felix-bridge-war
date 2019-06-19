@@ -8,9 +8,11 @@ jobs: # a collection of steps
       
     steps:
       - checkout # check out source code to working directory
-      - run: mvn deploy -s .circleci/conf/settings.xml -T 1.5C deploy
+      - run: |
+          mvn deploy -s .circleci/conf/settings.xml -T 1.5C deploy
+          cp dexels-felix-war/target/*.war dexels-felix-war/target/dexels-felix.war
       - store_artifacts: # store the uberjar as an artifact
-          path: dexels-felix-war/target/com.dexels.embedded.war-3.0.1.war
+          path: dexels-felix-war/target/dexels-felix.war
           destination: dexels-felix.war
       - persist_to_workspace:
           root: ~/repo
