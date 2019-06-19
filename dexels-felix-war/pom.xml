@@ -21,14 +21,14 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-    <name>Navajo Embedded War</name>
-    <groupId>com.dexels.navajo</groupId>
-    <artifactId>com.dexels.navajo.embedded.war</artifactId>
+    <name>Felix Embedded War</name>
+    <groupId>com.dexels</groupId>
+    <artifactId>com.dexels.embedded.war</artifactId>
     <version>3.0.0-SNAPSHOT</version>
     <packaging>war</packaging>
     <parent>
-        <groupId>com.dexels.navajo</groupId>
-        <artifactId>com.dexels.navajo.embedded.assembly</artifactId>
+        <groupId>com.dexels</groupId>
+        <artifactId>com.dexels.embedded.assembly</artifactId>
         <version>3.0.0-SNAPSHOT</version>
         <relativePath>../</relativePath>
     </parent>
@@ -51,8 +51,8 @@
                                 org.apache.felix.http.base,
                                 org.apache.felix.framework,
                                 org.apache.felix.http.proxy,
-				com.dexels.navajo.embedded,
-				junit,
+                				com.dexels.com.dexels.bridged.context,
+				                junit,
                                 slf4j-api
                             </excludeArtifactIds>
                             <excludeTransitive>true</excludeTransitive>
@@ -94,11 +94,10 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.dexels.navajo</groupId>
-            <artifactId>com.dexels.navajo.embedded</artifactId>
+            <groupId>com.dexels</groupId>
+            <artifactId>com.dexels.bridged.context</artifactId>
             <version>3.0.0-SNAPSHOT</version>
         </dependency>
-
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
