@@ -72,7 +72,7 @@ jobs: # a collection of steps
           rm -rf WEB-INF META-INF
           cd ..
       - store_artifacts: # store the uberjar as an artifact
-          path: war/target/navajo-felix.war
+          path: war/navajo-felix.war
           destination: navajo-felix.war
 
 workflows:
