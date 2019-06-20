@@ -26,6 +26,7 @@ import javax.servlet.ServletContext;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
+import org.osgi.framework.BundleException;
 
 public final class ProvisionActivator implements BundleActivator {
 	private final ServletContext servletContext;
@@ -36,9 +37,16 @@ public final class ProvisionActivator implements BundleActivator {
 
 	public void start(BundleContext context) throws Exception {
 		servletContext.setAttribute(BundleContext.class.getName(), context);
+		installAndStart("bundles/", context);
+		installAndStart("application/", context);
+	}
 
+	public void stop(BundleContext context) throws Exception {
+	}
+
+	private void installAndStart(String prefix, BundleContext context) throws MalformedURLException, BundleException {
 		List<Bundle> installed = new ArrayList<>();
-		for (URL url : findBundles()) {
+		for (URL url : findBundles(prefix)) {
 			this.servletContext.log("Installing bundle [" + url + "]");
 			Bundle bundle = context.installBundle(url.toExternalForm());
 			installed.add(bundle);
@@ -49,12 +57,9 @@ public final class ProvisionActivator implements BundleActivator {
 		}
 	}
 
-	public void stop(BundleContext context) throws Exception {
-	}
-
-	private List<URL> findBundles() throws MalformedURLException {
+	private List<URL> findBundles(String prefix) throws MalformedURLException {
 		List<URL> list = new ArrayList<>();
-		for (String name : this.servletContext.getResourcePaths("/WEB-INF/bundles/")) {
+		for (String name : this.servletContext.getResourcePaths("/WEB-INF/" + prefix)) {
 			if (name.endsWith(".jar")) {
 				URL url = this.servletContext.getResource(name);
 				if (url != null) {
