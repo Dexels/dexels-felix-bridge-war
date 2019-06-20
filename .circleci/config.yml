@@ -23,6 +23,7 @@ jobs: # a collection of steps
             - dexels-felix-super/
 
   package_dexels_war_container:
+    working_directory: ~/repo # directory where steps will run
     machine:
       image: circleci/classic:edge
     steps:
@@ -38,6 +39,7 @@ jobs: # a collection of steps
           docker push dexels/dexels-war:$TAG
           docker push dexels/dexels-war:latest
   package_navajo_war:
+    working_directory: ~/repo # directory where steps will run
     machine:
       image: circleci/classic:edge
     steps:
