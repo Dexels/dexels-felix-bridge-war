@@ -53,10 +53,10 @@ jobs: # a collection of steps
           ENTERPRISE_VERSION=$(curl -s "https://circleci.com/api/v1.1/project/github/Dexels/enterprise?circle-token=${CIRCLE_TOKEN}&limit=10&offset=0&filter=successful" | jq '.[] | .build_num ' |head -n 1)
           FELIX_WAR_VERSION=$(curl -s "https://circleci.com/api/v1.1/project/github/Dexels/dexels-felix-bridge-war?circle-token=${CIRCLE_TOKEN}&limit=10&offset=0&filter=successful" | jq '.[] | select(.workflows.job_name == "build") | .build_num ' |head -n 1)
           echo "Base version $BASE_VERSION Navajo: $NAVAJO_VERSION Enterprise versiom: $ENTERPRISE_VERSION Felix war version: $FELIX_WAR_VERSION"
-          curl -s https://117-190362472-gh.circle-artifacts.com/0/dexels-base.tgz?circle-token=${CIRCLE_TOKEN} >target/base.tgz
-          curl -s https://159-4423339-gh.circle-artifacts.com/0/enterprise_p2.zip?circle-token=${CIRCLE_TOKEN} >enterprise/enterprise.zip
-          curl -s https://248-4423334-gh.circle-artifacts.com/0/navajo_p2.zip?circle-token=${CIRCLE_TOKEN} >navajo/navajo.zip
-          curl -s https://12-192688421-gh.circle-artifacts.com/0/dexels-felix.war?circle-token=${CIRCLE_TOKEN} >war/dexels-felix.war
+          curl -s https://${BASE_VERSION}-190362472-gh.circle-artifacts.com/0/dexels-base.tgz?circle-token=${CIRCLE_TOKEN} >target/base.tgz
+          curl -s https://${ENTERPRISE_VERSION}-4423339-gh.circle-artifacts.com/0/enterprise_p2.zip?circle-token=${CIRCLE_TOKEN} >enterprise/enterprise.zip
+          curl -s https://${NAVAJO_VERSION}-4423334-gh.circle-artifacts.com/0/navajo_p2.zip?circle-token=${CIRCLE_TOKEN} >navajo/navajo.zip
+          curl -s https://${FELIX_WAR_VERSION}-192688421-gh.circle-artifacts.com/0/dexels-felix.war?circle-token=${CIRCLE_TOKEN} >war/dexels-felix.war
           tar xvfz target/base.tgz -C target
           rm target/base.tgz
           cd navajo
