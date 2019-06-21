@@ -48,7 +48,7 @@ jobs: # a collection of steps
           mkdir -p navajo
           mkdir -p enterprise
           mkdir -p war
-          BASE_VERSION=$(curl -s "https://circleci.com/api/v1.1/project/github/Dexels/dexels-base?circle-token=${CIRCLE_TOKEN}&limit=10&offset=0&filter=successful" | jq '.[] | select(.workflows.job_name == "package") | .build_num ' |head -n 1)
+          BASE_VERSION=$(curl -s "https://circleci.com/api/v1.1/project/github/Dexels/dexels-base?circle-token=${CIRCLE_TOKEN}&limit=10&offset=0&filter=successful" | jq '.[] | select(.workflows.job_name == "build") | .build_num ' |head -n 1)
           NAVAJO_VERSION=$(curl -s "https://circleci.com/api/v1.1/project/github/Dexels/navajo?circle-token=${CIRCLE_TOKEN}&limit=10&offset=0&filter=successful" | jq '.[] | .build_num ' |head -n 1)
           ENTERPRISE_VERSION=$(curl -s "https://circleci.com/api/v1.1/project/github/Dexels/enterprise?circle-token=${CIRCLE_TOKEN}&limit=10&offset=0&filter=successful" | jq '.[] | .build_num ' |head -n 1)
           FELIX_WAR_VERSION=$(curl -s "https://circleci.com/api/v1.1/project/github/Dexels/dexels-felix-bridge-war?circle-token=${CIRCLE_TOKEN}&limit=10&offset=0&filter=successful" | jq '.[] | select(.workflows.job_name == "build") | .build_num ' |head -n 1)
