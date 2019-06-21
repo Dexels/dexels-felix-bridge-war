@@ -1,4 +1,10 @@
 #!/bin/sh -x
+	BASE_VERSION=$(curl -s "https://circleci.com/api/v1.1/project/github/Dexels/dexels-base?circle-token=${CIRCLE_TOKEN}&limit=1&offset=0&filter=successful" | jq '.[0].build_num')
+        NAVAJO_VERSION=$(curl -s "https://circleci.com/api/v1.1/project/github/Dexels/navajo?circle-token=${CIRCLE_TOKEN}&limit=1&offset=0&filter=successful" | jq '.[0].build_num')
+        ENTERPRISE_VERSION=$(curl -s "https://circleci.com/api/v1.1/project/github/Dexels/enterprise?circle-token=${CIRCLE_TOKEN}&limit=1&offset=0&filter=successful" | jq '.[0].build_num')
+	echo "base: ${BASE_VERSION}"
+	echo "navajo: ${NAVAJO_VERSION}"
+	echo "enterprise: ${ENTERPRISE_VERSION}"
 	rm -rf navajo
 	rm -rf enterprise
 	rm -rf war
@@ -9,9 +15,9 @@
           mkdir -p enterprise
           mkdir -p war
           curl -s https://132-190362472-gh.circle-artifacts.com/0/dexels-base.tgz?circle-token=${CIRCLE_TOKEN} >target/base.tgz
-#          curl -s https://163-4423339-gh.circle-artifacts.com/0/enterprise_p2.zip?circle-token=${CIRCLE_TOKEN} >enterprise/enterprise.zip
-          curl -s https://259-4423334-gh.circle-artifacts.com/0/navajo_p2.zip?circle-token=${CIRCLE_TOKEN} >navajo/navajo.zip
-          curl -s https://49-192688421-gh.circle-artifacts.com/0/dexels-felix.war?circle-token=${CIRCLE_TOKEN} >war/dexels-felix.war
+          curl -s https://${ENTERPRISE_VERSION}-4423339-gh.circle-artifacts.com/0/enterprise_p2.zip?circle-token=${CIRCLE_TOKEN} >enterprise/enterprise.zip
+          curl -s https://${NAVAJO_VERSION}-4423334-gh.circle-artifacts.com/0/navajo_p2.zip?circle-token=${CIRCLE_TOKEN} >navajo/navajo.zip
+          curl -s https://55-192688421-gh.circle-artifacts.com/0/dexels-felix.war?circle-token=${CIRCLE_TOKEN} >war/dexels-felix.war
           tar xvfz target/base.tgz -C target
 	  find target -name *branding* | xargs rm
           rm target/base.tgz
@@ -50,8 +56,8 @@
           echo "Removed jgit"
           find target/bundle -name *repository.git* | xargs rm
           echo "Removed repository.git"
-          find target/bundle -name *soap* | xargs rm
-          echo "Removed soap"
+#          find target/bundle -name *soap* | xargs rm
+#          echo "Removed soap"
 	  
           find target/bundle -name com.dexels* | grep -v sharedconfigstore | grep -v index | grep -v mgmt | grep -v bundlesync | grep -v resourcebundle | grep -v context | grep -v immutable | grep -v replication | grep -v pubsub | grep -v repository | grep -v hazelcast | xargs -I '{}' echo "Deleting: {}"
           #find target/bundle -name com.dexels* | grep -v sharedconfigstore | grep -v index | grep -v mgmt | grep -v bundlesync | grep -v resourcebundle | grep -v context | grep -v immutable | grep -v replication | grep -v pubsub | grep -v repository | grep -v hazelcast | xargs rm
