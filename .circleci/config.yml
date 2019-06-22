@@ -58,7 +58,7 @@ jobs: # a collection of steps
           curl -s https://${ENTERPRISE_VERSION}-4423339-gh.circle-artifacts.com/0/enterprise_p2.zip?circle-token=${CIRCLE_TOKEN} >enterprise/enterprise.zip
           curl -s https://${NAVAJO_VERSION}-4423334-gh.circle-artifacts.com/0/navajo_p2.zip?circle-token=${CIRCLE_TOKEN} >navajo/navajo.zip
           curl -s https://${FELIX_WAR_VERSION}-192688421-gh.circle-artifacts.com/0/dexels-felix.war?circle-token=${CIRCLE_TOKEN} >war/dexels-felix.war
-          tar xvfz target/base.tgz -C target
+          tar xfz target/base.tgz -C target
           rm target/base.tgz
           cd navajo
           unzip navajo.zip -d .
@@ -76,7 +76,8 @@ jobs: # a collection of steps
           rm -rf navajo
           rm -rf enterprise
           echo "Cleaned up folder"
-          find target/bundle -name *swift* | xargs rm
+          ls -lR
+          #find target/bundle -name *swift* | xargs rm
           echo "Removed swift"
           find target/bundle -name *gogo* | xargs rm
           echo "Removed gogo"
