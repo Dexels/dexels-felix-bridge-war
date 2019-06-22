@@ -44,6 +44,7 @@ jobs: # a collection of steps
       image: circleci/classic:edge
     steps:
       - run: |
+          trap 'rc=$?; echo "error code $rc at $LINENO"; exit $rc' ERR
           mkdir -p target
           mkdir -p navajo
           mkdir -p enterprise
